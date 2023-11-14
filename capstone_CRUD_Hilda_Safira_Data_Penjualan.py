@@ -21,9 +21,9 @@ penjualan = [
     ["S006",'All Day Light Sunscreen Spray SPF50 PA++++ Sunscreen Mist', 'sunscreen',32000,129000,670],
 ]
 kolom_penjualan = ['kode', 'item', 'category', 'modal', 'harga','terjual']
-#=========================================================================================================================================================
 
 #=========================================================================================================================================================
+
 
 #fitur filter pencarian data penjualan admin berdasarkan category
 def data_key_category():
@@ -217,7 +217,7 @@ def update_data_penjualan():
 
 #delete data penjualan admin
 def delete_list_penjualan():
-    print.upper(25*(' '),'Hapus Data Barang penjualan skintific!',25*(' '))
+    print(25*(' '),'Hapus Data Barang penjualan skintific!',25*(' '))
     hapus_barang = input('Silahkan masukan kode barang yang ingin dihapus: ')
 
     idx = 0 
@@ -260,7 +260,7 @@ def menu_admin():
     elif nama_menu == '5':
         print('exit')
     else:
-        print(25*('+'),'Silahkan Masukan Data yang Ada Pada Daftar Menu',25*('+'))
+        print('Silahkan Masukan Data yang Ada Pada Daftar Menu')
         menu_admin()
 
 #login admin max 3x
@@ -324,73 +324,71 @@ def harga_reseller():
             + '| ' + str(kolom_6) + (9 - len(str(kolom_6))) * " "
             + '  |')
     print(132*"=")
+    menu_reseller()
 
-# #menu utama reseller
-# def menu_reseller():
-#     print(25*('+'),'Daftar Informasi reseller skintific',25*('+'))
-#     menu = ['Cek Stok Barang','Hitung Harga Reseller', 'Exit' ]
+#menu utama reseller
+def menu_reseller():
+    print(25*('+'),'Daftar Informasi reseller skintific',25*('+'))
+    menu = ['Cek Stok Barang','Hitung Harga Reseller', 'Exit' ]
    
-#     idx = 1
-#     for i in menu:
-#         print('klik',str(idx),'untuk menu', i)
-#         idx = idx +1
+    idx = 1
+    for i in menu:
+        print('klik',str(idx),'untuk menu', i)
+        idx = idx +1
     
-#     nama_menu = input ('silahkan pilih menu: ')
+    nama_menu = input ('silahkan pilih menu: ')
     
-#     if nama_menu == '1':
-#         harga_reseller()
-#         menu_reseller()
-#     elif nama_menu == '2':
-#         cek_harga_seller()
-#     elif nama_menu == '3':
-#         print(25*('+'),'Sampai Jumpa Sahabat Reseller Skintific!',25*('+'))
-#     else:
-#         print('Pilihan Tidak Ada di Daftar Menu Silahkan Input Kembali')
-#         menu_reseller()
+    if nama_menu == '1':
+        harga_reseller()
+    elif nama_menu == '2':
+        cek_harga_seller()
+    elif nama_menu == '3':
+        print(25*('+'),'Sampai Jumpa Sahabat Reseller Skintific!',25*('+'))
+    else:
+        print('Pilihan Tidak Ada di Daftar Menu Silahkan Input Kembali')
+        menu_reseller()
+
+def cek_harga_seller():
+    key_inputan = input('Masukan Kode Item Untuk Tahu Harga Diskon: ')
+    list_kode = []
+    for i in item_reseller:
+        list_kode.append(i[0])
+    if key_inputan in list_kode:
+        while True:
+            jumlah_beli = input('Masukan Jumlah Item Untuk Tahu Harga Diskon: ')
+            if jumlah_beli.isdigit():
+                jumlah_beli = int(jumlah_beli)
+                break
+            else:
+                print('Silahkan Masukan Kembali Data Dengan Benar')
+
+        for item in item_reseller:
+            if key_inputan == i[0]: 
+                break
+            stok_barang = item
+            print(list_title[0], '\t\t\t\t:', stok_barang[0])
+            print(list_title[1], '\t\t\t\t:', stok_barang[1])
+            print(list_title[2], '\t\t\t:', stok_barang[2])
+            print(list_title[3], '\t\t\t:', stok_barang[3])
+            print(list_title[4], '\t\t:', stok_barang[4])
+            print(list_title[5], '\t\t\t:', stok_barang[5])
 
 
-# def cek_harga_seller():
-#     key_inputan = input('Masukan Kode Item Untuk Tahu Harga Diskon: ')
-
-#     while True:
-#         jumlah_beli = input('Masukan Jumlah Item Untuk Tahu Harga Diskon: ')
-#         if jumlah_beli.isdigit():
-#             jumlah_beli = int(jumlah_beli)
-#             break
-#         else:
-#             print('Silahkan Masukan Data Sesuai Permintaan')
-
-#     for item in item_reseller:
-#         code = item[0]
-#         if key_inputan == code: 
-#             found = True
-#             stok_barang = item
-#             print(list_title[0], '\t\t\t\t:', stok_barang[0])
-#             print(list_title[1], '\t\t\t\t:', stok_barang[1])
-#             print(list_title[2], '\t\t\t:', stok_barang[2])
-#             print(list_title[3], '\t\t\t:', stok_barang[3])
-#             print(list_title[4], '\t\t:', stok_barang[4])
-#             print(list_title[5], '\t\t\t:', stok_barang[5])
+            harga_jual = stok_barang[3]
             
+            jumlah_barang = stok_barang[4]
 
-#             harga_jual = stok_barang[3]
-            
-#             jumlah_barang = stok_barang[4]
+            harga_diskon = harga_jual * stok_barang[4]
 
-#             harga_diskon = harga_jual * stok_barang[4]
-
-#             total_harga= (harga_jual - harga_diskon)* jumlah_beli
+            total_harga= (harga_jual - harga_diskon)* jumlah_beli
 
 
-#             print(f'Harga Reseller Resmi Untuk Pembelian {jumlah_beli} Item Adalah {round(total_harga)} Rupiah')
-#             menu_reseller()
-#             break
-    
-#     if not found:
-#         print('Silahkan Masukan Kembali Data Dengan Benar')
-
-cek_harga_seller()
-#tabel harga reseller
+            print(f'Harga Reseller Resmi Untuk Pembelian {jumlah_beli} Item Adalah {round(total_harga)} Rupiah')
+            menu_reseller()
+            break
+    else:
+        print('Silahkan Masukan Kembali Data Dengan Benar')
+        cek_harga_seller()
 
 #login reseller max 3x
 def login_reseller():
@@ -435,9 +433,9 @@ def login_reseller():
 #menu login admin/reseller/keluar
 def menu():
     print(25*('+'),'Welcome to Skintific!', 25*('+'))
-    menu = ['admin','reseller','exit']
+    menu_utama = ['admin','reseller','exit']
     idx = 1
-    for i in menu:
+    for i in menu_utama:
         print('klik',idx,'untuk login sebagai', i)
         idx = idx +1
     
@@ -448,7 +446,7 @@ def menu():
     elif nama_menu == '2':
         login_reseller()
     elif nama_menu == '3':
-        ('log out')
+        print('Terimakasih, sampai jumpa kembali')
     else:
         print('Pilihan Tidak Terdaftar Dalam Kolom Menu, Silahkan Input Kembali')
         menu()
